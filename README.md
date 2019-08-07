@@ -1,0 +1,2 @@
+# Blind_assistive_device
+This project is intended to help blind with a cheaper assistance. In this project using ultrasonic sensors what distance the obstacle are located is measured. Based on this distance, a different sound is made using a speaker.    Lesser the distance(near) higher frequency sound is made.  By this technique blind people can avoid obstacles, also differentiate there distances.
