@@ -1,0 +1,41 @@
+int TrigPin = 5;
+int EchoPin = 6;
+int Speaker_Pin = 7;
+int On_Button = 3;
+int Frequency,Duration,Flag_01,Delay_In_Millisecond;
+void setup() {
+  Serial.begin(9600);
+   pinMode(led, OUTPUT);
+   pinMode(TrigPin, OUTPUT);
+  pinMode(EchoPin, INPUT);
+    pinMode(2, OUTPUT);
+   pinMode(4, OUTPUT);
+    digitalWrite(2, HIGH);
+    digitalWrite(4, HIGH);
+}
+void loop() {
+  if(digitalRead(On_Button)==HIGH)
+  {
+  long Duration, Distance;
+  digitalWrite(TrigPin,HIGH);
+  delayMicroseconds(1000);
+  digitalWrite(TrigPin, LOW);
+  Duration=pulseIn(EchoPin, HIGH);
+  Distance =(Duration/2)/29.1;
+  Serial.print(Distance);
+  Serial.println("CM");
+  delay(10);
+ if(Distance>450)
+  Flag_01=1;
+ Frequency=map(Distance,0,440,5000,300);
+ Duration=map(Distance,0,440,50,500);
+ Delay_In_Millisecond=map(Distance,0,440,100,1000);
+ if(Flag_01==0)
+ {
+tone(Speaker_Pin,Frequency,Duration);
+delay(Delay_In_Millisecond);
+ }
+ else
+ Flag_01=0;
+}
+}
